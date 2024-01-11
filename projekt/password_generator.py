@@ -1,25 +1,41 @@
-import random
+import sys
 
+password = []
+characters_left = -1
 
-class PasswordGenerator:
-    def __init__(self, password_len):
-        self._password_len = password_len
-        self._password = []
+def update_characters_left(number_of_characters):
+    global characters_left
 
-    def add(self, what, number_of_characters):
-        if self._character_left() >= number_of_characters:
-            self._password += random.choices(what, k=number_of_characters)
-            random.shuffle(self._password)
-            return True
+    if number_of_characters < 0 or number_of_characters > characters_left:
+        print(' liczba znaków spoza przedziału 0,', characters_left)
+        sys.exit(0)
+    else:
+        characters_left -= number_of_characters
+        print('pozostało znaków:', characters_left)
+password_lenght = int(input('jak długie ma być hasło? '))
 
-        return False
+if password_lenght < 5:
+    print('hasło musi mieć minmum 5 znaków, spróbuj jeszcze raz')
+    sys.exit(0)
+else:
+    characters_left = password_lenght
+    # print('pozostało znaków:', characters_left)
 
-    def ready(self):
-        return self._character_left() == 0
+lowercase_letters = int(input("ile małych liter ma miec hasło? "))
+# if lowercase_letters > characters_left:
+#     print('liczba znaków przekracza liczbę wolnych znakow')
+#     sys.exit(0)
+update_characters_left(lowercase_letters)
 
-    def _character_left(self):
-        return self._password_len - len(self._password)
-    def password(self):
+uppercase_letters = int(input("ile dużych liter ma miec hasło? "))
+update_characters_left(uppercase_letters)
 
-        if self.ready():
-            return ''.join(self._password)
+special_characters = int(input("ile znaków specjalnych ma miec hasło? "))
+update_characters_left(special_characters)
+
+digits = int(input("ile cyfr ma miec hasło? "))
+update_characters_left(digits)
+# This is a sample Python script.
+
+# Press Shift+F10 to execute it or replace it with your code.
+# Press Double Shift to search everywhere for classes, files, tool windows, actions, and sett
