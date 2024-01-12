@@ -1,4 +1,6 @@
 import sys
+import random
+import string
 
 password = []
 characters_left = -1
@@ -23,10 +25,7 @@ else:
 
 lowercase_letters = int(input("ile małych liter ma miec hasło? "))
 # if lowercase_letters > characters_left:
-#     print('liczba znaków przekracza liczbę wolnych znakow')
-#     sys.exit(0)
-update_characters_left(lowercase_letters)
-
+#
 uppercase_letters = int(input("ile dużych liter ma miec hasło? "))
 update_characters_left(uppercase_letters)
 
@@ -36,6 +35,33 @@ update_characters_left(special_characters)
 digits = int(input("ile cyfr ma miec hasło? "))
 update_characters_left(digits)
 # This is a sample Python script.
+if characters_left > 0:
+    print('nie wzystkie znaki zostały wyświtlone')
+    lowercase_letters += characters_left
+
+print()
+print('długośc hasła:', password_lenght)
+print('małe litery:'), uppercase_letters
+print("duże litery:", uppercase_letters)
+print('znaki specjalne:', special_characters)
+print('cyfry:', digits)
+
+for i in range(password_lenght):
+    if lowercase_letters > 0:
+       password.append(random.choice(string.ascii_lowercase))
+       lowercase_letters -= 1
+    if uppercase_letters > 0:
+       password.append(random.choice(string.ascii_uppercase))
+       uppercase_letters -= 1
+    if special_characters > 0:
+       password.append(random.choice(string.punctuation))
+       special_characters -= 1
+    if digits > 0:
+       password.append(random.choice(string.digits))
+       digits -= 1
+
+random.shuffle(password)
+print('wygenerowane hasło:', ''.join(password))
 
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and sett
