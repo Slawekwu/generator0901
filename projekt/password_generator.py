@@ -24,7 +24,7 @@ else:
     # print('pozostało znaków:', characters_left)
 
 lowercase_letters = int(input("ile małych liter ma miec hasło? "))
-# if lowercase_letters > characters_left:
+update_characters_left(lowercase_letters)
 #
 uppercase_letters = int(input("ile dużych liter ma miec hasło? "))
 update_characters_left(uppercase_letters)
@@ -41,7 +41,7 @@ if characters_left > 0:
 
 print()
 print('długośc hasła:', password_lenght)
-print('małe litery:'), uppercase_letters
+print('małe litery:', lowercase_letters)
 print("duże litery:", uppercase_letters)
 print('znaki specjalne:', special_characters)
 print('cyfry:', digits)
